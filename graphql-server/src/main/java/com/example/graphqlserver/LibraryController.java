@@ -5,6 +5,7 @@ import com.example.graphqlserver.author.AuthorClient;
 import com.example.graphqlserver.book.Book;
 import com.example.graphqlserver.book.BookClient;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -25,8 +26,9 @@ public class LibraryController {
         return bookClient.getAllBooks();
     }
 
-    @QueryMapping
-    public List<Author> authors() {
+    @SchemaMapping
+    public List<Author> authors(Book book) {
+        // TODO Search authors for that book
         return authorClient.getAllAuthors();
     }
 
