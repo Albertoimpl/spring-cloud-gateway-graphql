@@ -9,6 +9,7 @@ import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class LibraryController {
@@ -28,8 +29,12 @@ public class LibraryController {
 
     @SchemaMapping
     public List<Author> authors(Book book) {
-        // TODO Search authors for that book
-        return authorClient.getAllAuthors();
+        return authorClient
+                .getAllAuthors()
+                .stream()
+                .filter(author -> book.getAuthors()
+                        .contains(author.getFirstName() + " " + author.getLastName()))
+                .collect(Collectors.toList());
     }
 
 }
