@@ -1,0 +1,12 @@
+server:
+  port: 8090
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: gql
+          uri: https://localhost:6565
+          predicates:
+            - Path=/**
+          filters:
+            - AddResponseHeader=X-Request-header, header-value
