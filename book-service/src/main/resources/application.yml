@@ -1,2 +1,7 @@
 server:
   port: 8090
+
+wavefront:
+  application:
+    name: graphql-library
+    service: book-service

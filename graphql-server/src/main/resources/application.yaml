@@ -4,3 +4,8 @@ spring:
     graphiql:
       path: /graphiql
       enabled: true
+
+wavefront:
+  application:
+    name: graphql-library
+    service: graphql-server

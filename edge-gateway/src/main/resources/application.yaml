@@ -1,12 +1,18 @@
 server:
-  port: 8090
+  port: 8081
 spring:
   cloud:
     gateway:
       routes:
-        - id: gql
-          uri: https://localhost:6565
+        - id: graphql
+          uri: http://localhost:8080/graphql
           predicates:
-            - Path=/**
+            - Path=/library
           filters:
-            - AddResponseHeader=X-Request-header, header-value
+            - RewritePath=/library, /graphql
+
+
+wavefront:
+  application:
+    name: graphql-library
+    service: edge-gateway
