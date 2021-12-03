@@ -51,22 +51,24 @@ http://localhost:8081/library
 
 == Filters
 
-== Global Filters
 
-=== BasicAuthGlobalFilter
+== Authentication
 
-The `BasicAuthGlobalFilter` creates a proxy `WebFilterChainProxy` to include a Spring Security chain with a basic configuration that includes BasicAuth by default.
+Spring Security has been enabled with most of the default setup. A configuration class `SecurityConfig` has been defined to disable CSRF and CORS for this example.
 
 ```
-SecurityWebFilterChain basicAuthFilter = ServerHttpSecurity
-        .http()
-        .authorizeExchange()
-            .anyExchange().authenticated()
-        .and()
-        .build();
+return http
+			.csrf().disable()
+			.cors().disable()
+			.authorizeExchange()
+				.anyExchange().authenticated()
+			.and()
+				.httpBasic()
+			.and()
+			.build();
 ```
 
-The `user` 's password is prompted in the logs by default.
+The `user` 's password will be prompted in the logs by default.
 ```
 Using generated security password: <your unsecure passowrd>
 ```
