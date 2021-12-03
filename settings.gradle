@@ -8,5 +8,7 @@ pluginManagement {
 rootProject.name = 'spring-cloud-gateway-graphql'
 
 include "edge-gateway"
+include "author-service"
+include "book-service"
 include "graphql-server"
 
