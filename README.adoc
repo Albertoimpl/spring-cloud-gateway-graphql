@@ -1,1 +1,27 @@
 = Spring Cloud Gateway and GraphQL
+
+
+== Filters
+
+== Global Filters
+
+=== BasicAuthGlobalFilter
+
+The `BasicAuthGlobalFilter` creates a proxy `WebFilterChainProxy` to include a Spring Security chain with a basic configuration that includes BasicAuth by default.
+
+```
+SecurityWebFilterChain basicAuthFilter = ServerHttpSecurity
+        .http()
+        .authorizeExchange()
+            .anyExchange().authenticated()
+        .and()
+        .build();
+```
+
+The `user` 's password is prompted in the logs by default.
+```
+Using generated security password: <your unsecure passowrd>
+```
+
+This is a basic security example that is not valid for a production environment.
+Please, follow the https://docs.spring.io/spring-security/site/docs/5.2.1.RELEASE/reference/htmlsingle[documentation] to adjust the filter to your security requirements.
