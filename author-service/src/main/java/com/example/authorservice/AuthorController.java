@@ -1,23 +1,24 @@
 package com.example.authorservice;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class AuthorController {
 
     private static List<Author> ALL_AUTHORS;
 
-    public AuthorController() {
-        ALL_AUTHORS = new ArrayList<>();
-        ALL_AUTHORS.add(new Author("Agatha", "Christie", "pic", "email", "phone"));
-        ALL_AUTHORS.add(new Author("Barbara", "Cartland", "pic", "email", "phone"));
-        ALL_AUTHORS.add(new Author("William", "Shakespeare", "pic", "email", "phone"));
-        ALL_AUTHORS.add(new Author("Corin", "Tellado", "pic", "email", "phone"));
-        ALL_AUTHORS.add(new Author("Leo", "Tolstoy", "pic", "email", "phone"));
+    public AuthorController() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        ALL_AUTHORS = mapper.readValue(new ClassPathResource("./fixtures/authors.json").getFile(), new TypeReference<>() {});
     }
 
     @GetMapping("authors")
