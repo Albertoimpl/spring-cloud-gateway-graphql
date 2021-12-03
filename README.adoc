@@ -1,5 +1,39 @@
 = Spring Cloud Gateway and GraphQL
 
+author-service
+[source,bash]
+----
+./gradlew author-service:bootRun
+----
+[source,bash]
+----
+curl localhost:8091/authors
+----
+
+book-service
+[source,bash]
+----
+./gradlew book-service:bootRun
+----
+[source,bash]
+----
+curl localhost:8090/books
+----
+
+graphql-server
+[source,bash]
+----
+./gradlew graphql-server:bootRun
+----
+
+[source,bash]
+----
+curl -X POST \
+-H "Content-Type: application/json" \
+-d '{"query": "{books { title authors {firstName       lastName } } }"}' \
+http://localhost:8080/graphql
+----
+
 
 == Filters
 
