@@ -10,7 +10,13 @@ spring:
             - Path=/library
           filters:
             - RewritePath=/library, /graphql
-
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 1
+  redis:
+    host: localhost
+    port: 6379
 
 wavefront:
   application:

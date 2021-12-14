@@ -23,8 +23,11 @@ dependencies {
     implementation "com.wavefront:wavefront-spring-boot-starter:2.2.2"
     // Tracing
     implementation "org.springframework.cloud:spring-cloud-starter-sleuth"
+    // Rate Limit
+    implementation "org.springframework.boot:spring-boot-starter-data-redis-reactive"
+    // Authentication
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
-    implementation 'org.springframework.boot:spring-boot-starter-security' // For BasicAuthGlobalFilter
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
