@@ -72,9 +72,12 @@ return http
 			.build();
 ```
 
-The `user` 's password will be prompted in the logs by default.
+The user `alice` has been hardcoded in the `application.yml` file for quick demo purposes.
 ```
-Using generated security password: <your unsecure passowrd>
+  security:
+    user: # Only for a quick starter of this project - do not use in any environment
+      name: alice
+      password: test
 ```
 
 This is a basic security example that is not valid for a production environment.
