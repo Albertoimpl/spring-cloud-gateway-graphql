@@ -17,6 +17,10 @@ spring:
   redis:
     host: localhost
     port: 6379
+  security:
+    user: # Only for a quick starter of this project - do not use in any environment
+      name: alice
+      password: test
 
 wavefront:
   application:
