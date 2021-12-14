@@ -1,5 +1,8 @@
 package com.example.graphqlserver.author;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Author {
 
     private String firstName;
