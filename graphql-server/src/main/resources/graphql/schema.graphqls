@@ -4,7 +4,7 @@ type Query {
 }
 
 type Book {
-    isbn: ID!
+    isbn: ID
     title: String
     pageCount: Int
     authors: [Author]

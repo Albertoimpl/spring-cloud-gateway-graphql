@@ -22,11 +22,25 @@ public class LibraryController {
         this.authorClient = authorClient;
     }
 
+    /**
+     * Query -> "books"
+     */
     @QueryMapping
     public List<Book> books() {
         return bookClient.getAllBooks();
     }
 
+    /**
+     * Query -> "authors"
+     */
+    @QueryMapping
+    public List<Author> authors() {
+        return authorClient.getAllAuthors();
+    }
+
+    /**
+     * "book.authors" Data Fetcher
+     */
     @SchemaMapping
     public List<Author> authors(Book book) {
         return authorClient
