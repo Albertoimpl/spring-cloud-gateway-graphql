@@ -1,9 +1,10 @@
 spring:
   graphql:
     path: /graphql
+    tools:
+      introspection-enabled: false
     graphiql:
-      path: /graphiql
-      enabled: true
+      enabled: false
 
 wavefront:
   application:
