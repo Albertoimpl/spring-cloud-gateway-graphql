@@ -1,6 +1,6 @@
 = Spring Cloud Gateway and GraphQL
 
-> This post was co-authored with XXX
+> This post was co-authored by https://twitter.com/ilozano2[Ignacio Lozano] and https://twitter.com/Albertoimpl[Alberto Calleja Ríos]
 
 https://spring.io/projects/spring-graphql[Spring GraphQL] is a brand-new project that combines all the greatness of Spring with GraphQL.
 
@@ -27,7 +27,7 @@ GraphQL server doesn't provide a built-in option to enable authentication, leavi
 
 === Rate Limiting
 
-GraphQL allows you to write a server implementation where every field has an independent way for resolving that value. However, without additional consideration, a naive implementation could repeatedly load data from many sources.
+GraphQL allows you to write a server implementation where every field has an independent way of resolving that value. However, without additional consideration, a naive implementation could repeatedly load data from many sources.
 
 This is solved by a batching technique, where multiple requests for data are collected over a short period of time and then gathered into a single request to an underlying database or microservice but there is still a problem, even if we apply this pattern very well, authenticated calls must introduce a limit for the number of attempts.
 
@@ -51,7 +51,7 @@ image::spring-cloud-gateway-graphql.png[spring-cloud-gateway-graphql]
 
 A Spring Cloud Gateway instance can be configured as an edge gateway providing the first control to the GraphQL server through Authentication.
 
-In order to get that control in the Spring Cloud Gateway instance, the next dependency was included:
+To get that control in the Spring Cloud Gateway instance, the next dependency was included:
 
 implementation 'org.springframework.boot:spring-boot-starter-security'
 
@@ -75,7 +75,7 @@ curl -v http://localhost:8081/library -H'Content-Type: application/json' --data-
 
 The best place to introduce a rate limit is in your API gateway.
 
-We are going to add a dependency to redis in order to benefit from the already existing RequestRateLimiter that uses the canonical algorithm for rate limiting of a token bucket.
+We are going to add a dependency to Redis to benefit from the already existing RequestRateLimiter that uses the canonical algorithm for rate-limiting of a token bucket.
 
 [source,groovy]
 ----
@@ -239,7 +239,7 @@ some time to get all those projects running in your local machine:
 Redirecting route http://localhost:8080/library to GraphQL endpoint
 Actuator enabled on http://localhost:8081/actuator
 
-It is important to know that in a production environment you only want to expose the Spring Cloud Gateway, which is acting as an edge gateway, and it will protect the GraphQL API. If you run the projects locally using gradle, all the endpoints can be reached.
+It is important to know that in a production environment you only want to expose the Spring Cloud Gateway, which is acting as an edge gateway, and it will protect the GraphQL API. If you run the projects locally using Gradle, all the endpoints can be reached.
 
 On the other hand, GraphQL introspection and GraphiQL client have been disabled using the next Spring Boot GraphQL properties `graphql.tools.introspection-enabled: false` and  `graphql.graphiql.enabled: false`.
 
