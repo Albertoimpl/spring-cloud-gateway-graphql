@@ -208,7 +208,16 @@ By adding the dependencies to the services, we can now exactly see how long does
 
 The full project can be found in https://github.com/Albertoimpl/spring-cloud-gateway-graphql
 
-And to get started with it, we can run the following gradle command
+And to get started with it, we can execute the following commands
+
+First, we need to start redis for our rate limit:
+
+[source,bash]
+----
+docker run -p6379:6379 redis:5.0.9-alpine
+----
+
+Then, we can start all the applications with:
 
 [source,bash]
 ----
